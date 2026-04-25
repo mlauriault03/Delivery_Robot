@@ -31,7 +31,7 @@ MAX_RPM = 200       # (2506 PPS) True max is 223 RPM, but limit to 200 for safet
 # CONVERSIONS
 
 def rpm_to_pps(rpm: float) -> int:
-    """Convert RPM to pulses per second (PPS) for RoboClaw commands"""
+    """Convert RPM to pulses per second (PPS)"""
     if abs(rpm) > MAX_RPM:
         raise ValueError(f"RPM must be between -{MAX_RPM} and {MAX_RPM}")
     pps = int((rpm / 60) * ENC_PPR)
@@ -102,7 +102,7 @@ class DriveController:
         pps1 = rpm_to_pps(rpm1)
         pps2 = rpm_to_pps(rpm2)
         print(f"Moving M1 to {angle_deg1}° ({pulses1} P) at {rpm1} RPM ({pps1} PPS) and M2 to {angle_deg2}° ({pulses2} P) at {rpm2} RPM ({pps2} PPS)")
-        self.rc.SpeedAccelDeccelPositionM1M2(self.address, ACCEL, pps1, DECCEL, pulses1, pps2, pulses2, 1)
+        self.rc.SpeedAccelDeccelPositionM1M2(self.address, ACCEL, pps1, DECCEL, pulses1, ACCEL, pps2, DECCEL, pulses2, 1)
 
     # ENCODERS
 
