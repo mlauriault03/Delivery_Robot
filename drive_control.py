@@ -69,18 +69,18 @@ class DriveController:
     def setSpeedM1(self, rpm: float) -> None:
         pps = rpm_to_pps(rpm)
         print(f"Setting speed to {rpm} RPM ({pps} PPS)")
-        self.rc.SpeedM1(self.address, pps)
+        self.rc.SpeedAccelM1(self.address, ACCEL, pps)
 
     def setSpeedM2(self, rpm: float) -> None:
         pps = rpm_to_pps(rpm)
         print(f"Setting speed to {rpm} RPM ({pps} PPS)")
-        self.rc.SpeedM2(self.address, pps)
+        self.rc.SpeedAccelM2(self.address, ACCEL, pps)
 
     def setSpeeds(self, rpm1: float, rpm2: float) -> None:
         pps1 = rpm_to_pps(rpm1)
         pps2 = rpm_to_pps(rpm2)
         print(f"Setting speed 1 to {rpm1} RPM ({pps1} PPS) and speed 2 to {rpm2} RPM ({pps2} PPS)")
-        self.rc.SpeedM1M2(self.address, pps1, pps2)
+        self.rc.SpeedAccelM1M2(self.address, ACCEL, pps1, pps2)
 
     # POSITION CONTROL
 
