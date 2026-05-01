@@ -63,7 +63,7 @@ class DriveController:
     # SPEED CONTROL
     
     def stop(self) -> None:
-        self.rc.SpeedAccelM1M2(self.address, ACCEL, 0, 0)
+        self.rc.SpeedAccelM1M2(self.address, DECCEL, 0, 0)
 
     def setSpeedM1(self, rpm: float) -> None:
         pps = rpm_to_pps(rpm)
