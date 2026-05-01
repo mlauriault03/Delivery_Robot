@@ -22,9 +22,9 @@ ADDRESS2 = 0x81
 ADDRESS3 = 0x82
 
 # PARAMETERS - DRIVE MOTORS
-ACCEL = 2000        # PPS^2
+ACCEL = 4000        # PPS^2
 DECCEL = 2000       # PPS^2
-DEFAULT_RPM = 150   # (1879.5 PPS)
+DEFAULT_RPM = 200   # (2506 PPS)
 MAX_RPM = 200       # (2506 PPS) True max is 223 RPM, but limit to 200 for safety
 
 
@@ -63,8 +63,7 @@ class DriveController:
     # SPEED CONTROL
     
     def stop(self) -> None:
-        self.rc.ForwardBackwardM1(self.address, 64)  # 64 = stop
-        self.rc.ForwardBackwardM2(self.address, 64)  # 64 = stop
+        self.rc.SpeedAccelM1M2(self.address, ACCEL, 0, 0)
 
     def setSpeedM1(self, rpm: float) -> None:
         pps = rpm_to_pps(rpm)

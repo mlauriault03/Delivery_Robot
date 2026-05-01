@@ -25,7 +25,7 @@ def align_shaft_M2(d: DriveController) -> None:
     while speed:
         input(f"Press Enter to start turning M2 at {speed} RPM.")
         d.setSpeedM2(speed)  # Slow speed to allow for alignment
-        input("Press Enter when white strip on outputf shaft is on top...")
+        input("Press Enter when white strip on output shaft is on top...")
         d.stop()
         speed = int(input("Press Enter if aligned. Otherwise, enter speed to use next: ") or 0)
     print("M2 shaft aligned.")

@@ -28,7 +28,7 @@ def test_position(d: DriveController, angle_deg1: float, angle_deg2: float) -> N
 
 def align_shaft_M1(d: DriveController) -> None:
     print("\nAligning M1 shaft...")
-    speed = 20
+    speed = int(input("Press Enter to skip alignment. Otherwise, enter speed in RPM to turn M1: ") or 0)
     while speed:
         input(f"Press Enter to start turning M1 at {speed} RPM.")
         d.setSpeedM1(speed)  # Slow speed to allow for alignment
@@ -39,7 +39,7 @@ def align_shaft_M1(d: DriveController) -> None:
 
 def align_shaft_M2(d: DriveController) -> None:
     print("\nAligning M2 shaft...")
-    speed = 20
+    speed = int(input("Press Enter to skip alignment. Otherwise, enter speed in RPM to turn M2: ") or 0)
     while speed:
         input(f"Press Enter to start turning M2 at {speed} RPM.")
         d.setSpeedM2(speed)  # Slow speed to allow for alignment
@@ -58,18 +58,18 @@ def demo() -> None:
         # Speed tests:
         # 1. Both at 100 RPM
         test_speed(d, 100, 100)
-        # # 2. Both at 150 RPM
+        # 2. Both at 150 RPM
         test_speed(d, 150, 150)
-        # # 3. Left at 100 RPM, right at -100 RPM
+        # 3. Left at 100 RPM, right at -100 RPM
         test_speed(d, 100, -100)
-        # # 4. Left at -100 RPM, right at 100 RPM
+        # 4. Left at -100 RPM, right at 100 RPM
         test_speed(d, -100, 100)
-        # # 5. Left at 150 RPM, right at 100 RPM
+        # 5. Left at 150 RPM, right at 100 RPM
         test_speed(d, 150, 100)
-        # # 6. Left at 100 RPM, right at 150 RPM
+        # 6. Left at 100 RPM, right at 150 RPM
         test_speed(d, 100, 150)
 
-        # # Align shafts for position tests
+        # Align shafts for position tests
         align_shaft_M1(d)
         align_shaft_M2(d)
         # Reset encoders before position tests
